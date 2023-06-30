@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: antiquewhite;
+    width: 500px;
+    height: 500px;
+}
+
+.digits {
+ width: 90%;
+ height: 100%;
+}
+button {
+    width: 10%;
+    height: 10%;
+}
