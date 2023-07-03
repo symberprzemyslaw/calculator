@@ -31,5 +31,8 @@ const digits = document.querySelectorAll(".digits > button")
 digits.forEach(addEventListener('click', e => {
     let dukanie = e.target.innerText
     document.querySelector('.display').textContent += dukanie
+    if (dukanie === 'C'){
+        document.querySelector('.display').textContent = ''
+    }
 
 }))
