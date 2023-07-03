@@ -27,12 +27,12 @@ const div = (a,b) => a / b
 
 console.log(add(2,3))
 
-const digits = document.querySelectorAll(".digits > button")
-digits.forEach(addEventListener('click', e => {
-    let dukanie = e.target.innerText
-    document.querySelector('.display').textContent += dukanie
-    if (dukanie === 'C'){
+const digits = document.querySelectorAll("button")
+digits.forEach(element => element.addEventListener('click', e => {
+    let textInsideBtn = e.target.innerText
+    document.querySelector('.display').textContent += textInsideBtn
+    if (e.target.id === "clear-btn"){
         document.querySelector('.display').textContent = ''
-    }
+    } 
 
 }))

@@ -16,13 +16,16 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: -10px 10px  black;
+    /*box-shadow: -10px 10px  black; */
+
 }
 
+
+
 .display {
-    width: 90%;
+    width: 390px;
     margin-top: 1em;
-    height: 80px;
+    height: 120px;
     background-color: rgb(106, 127, 145);
     color: rgb(194, 194, 194);
     font-size: 2em;
@@ -45,4 +48,9 @@ button {
     color: rgb(212, 211, 211);
     background-color: rgb(66, 66, 66);
     font-size: 24px;
+}
+
+#score-btn {
+
+    width: 190px;
 }
