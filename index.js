@@ -30,9 +30,16 @@ console.log(add(2,3))
 const digits = document.querySelectorAll("button")
 digits.forEach(element => element.addEventListener('click', e => {
     let textInsideBtn = e.target.innerText
-    document.querySelector('.display').textContent += textInsideBtn
+    let textOnDisplay = document.querySelector('.display')
+    textOnDisplay.textContent += textInsideBtn
+    textOnDisplay = textOnDisplay.value
+
     if (e.target.id === "clear-btn"){
         document.querySelector('.display').textContent = ''
-    } 
+        
+    } else if (e.target.id === 'add-btn'){
+        console.log(textOnDisplay.value)
+        textOnDisplay.textContent = Number(textOnDisplay.innerText) + 2
+    }
 
 }))
