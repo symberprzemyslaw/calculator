@@ -2,9 +2,7 @@
     font-family: 'Digital';
     src: url(./font/digital-7.ttf);
 }
-:root  {
---bg : blue;
-}
+
 
 body {
     margin: 0;
@@ -36,6 +34,10 @@ body {
     font-family: 'Digital'
 }
 
+.display p {
+    margin-right: 20px;
+}
+
 
 .digits {
  display: flex;
@@ -57,24 +59,4 @@ button {
 
     width: 190px;
 
-}
-table, td {
-    border: 1px solid black;
-}
-
-.dropdown {
-    background-color: aqua;
-}
-
-.dropdown  p {
-    display: none;
-}
-
-/* .dropdown:active p{
-    display: none;
-
-} */
-
-::selection {
-    color: var(--bg);
 }
