@@ -1,62 +1,71 @@
+class Calculator {
+  constructor() {
+    this.numA = '';
+    this.numB = '';
+    this.operand = '+';
+    this.selectedNum = this.numA;
 
+    this.add = (a, b) => a + b;
+    this.sub = (a, b) => a - b;
+    this.multi = (a, b) => a * b;
+    this.div = (a, b) => a / b;
 
-let numA = '';
-let numB = '';
-let operand = '+';
-let selectedNum = numA;
+    this.digits = document.querySelectorAll("button");
+    this.display = document.querySelector(".first-row-dis");
 
-const add = (a, b) => a + b;
-const sub = (a, b) => a - b;
-const multi = (a, b) => a * b;
-const div = (a, b) => a / b;
+    this.init();
+  }
 
-const digits = document.querySelectorAll("button");
-const display = document.querySelector(".first-row-dis");
+  operate(numA, numB, operand) {
+    if (operand === "+") {
+      return this.add(Number(numA), Number(numB));
+    } else if (operand === "-") {
+      return this.sub(Number(numA), Number(numB));
+    } else if (operand === "*") {
+      return this.multi(Number(numA), Number(numB));
+    } else if (operand === "/") {
+      return this.div(Number(numA), Number(numB));
+    }
+  }
 
+  init() {
+    this.digits.forEach(element => {
+      element.addEventListener("click", e => {
+        if (!element.id) {
+          this.selectedNum += element.innerText;
+          this.display.textContent += element.innerText;
+        } else if (element.id === "clear-btn") {
+          this.numB = '';
+          this.numA = '';
+          this.display.textContent = '';
+          this.selectedNum = '';
+        } else if (element.id === "score-btn") {
+          this.numB = this.selectedNum;
+          const result = this.operate(this.numA, this.numB, this.operand);
+          const formattedResult = parseFloat(result.toFixed(10)); // Zaokrąglenie i konwersja na liczbę
+          const resultText = formattedResult.toString(); // Konwersja wyniku na ciąg znaków
 
-
-function operate(numA, numB, operand) {
-  if (operand === "+") {
-    return add(Number(numA), Number(numB));
-  } else if (operand === "-") {
-    return sub(Number(numA), Number(numB));
-  } else if (operand === "*") {
-    return multi(Number(numA), Number(numB));
-  } else if (operand === "/") {
-    return div(Number(numA), Number(numB));
+          this.display.textContent = resultText;
+          this.numA = resultText;
+          this.selectedNum = this.numA;
+        } else if (element.id === "back-btn"){
+          this.selectedNum = this.selectedNum.split('').splice(0 ,this.selectedNum.length -1).join('')
+          if (!this.selectedNum){
+            this.selectedNum = 0
+          }
+          this.display.textContent = this.selectedNum;
+        } else if (element.id === "dot-btn") {
+          this.selectedNum += element.innerText;
+          this.display.textContent += element.innerText;
+        } else if (element.id) {
+          this.operand = element.innerText;
+          this.numA = this.selectedNum;
+          this.selectedNum = '';
+          this.display.textContent += ` ${this.operand} `;
+        }
+      });
+    });
   }
 }
 
-
-// funkcja dodajaca do kazdego przycisku obsluge zdarzenia click
-digits.forEach(element =>
-  element.addEventListener("click", e => {
-
-    // jesli nie ma id to dodaje
-    if (!element.id) {
-      selectedNum += element.innerText;
-      display.textContent += element.innerText;
-    } else if (element.id === "clear-btn") {
-      numB = ''
-      numA = ''
-      display.textContent = '';
-      selectedNum = '';
-
-
-    // tutaj gdzies czai sie blad
-    } else if (element.id === "score-btn") {
-      numB = selectedNum;
-      const result = operate(numA, numB, operand);
-      display.textContent = result;
-      numA = result;
-      selectedNum = numA;
-
-
-    } else if (element.id) {
-      operand = element.innerText;
-      numA = selectedNum;
-      selectedNum = '';
-      display.textContent += ` ${operand} `;
-  }})
-
-);
+const calculator = new Calculator();
