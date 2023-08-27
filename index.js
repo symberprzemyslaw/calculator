@@ -1,3 +1,7 @@
+//User can put multiple opernad signs and dots, need to fix this
+//When display is 0 change display to numSelect
+
+
 class Calculator {
   constructor() {
     this.numA = '';
