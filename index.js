@@ -1,7 +1,3 @@
-//User can put multiple opernad signs and dots, need to fix this
-//When display is 0 change display to numSelect
-
-
 class Calculator {
   constructor() {
     this.numA = '';
@@ -68,6 +64,11 @@ class Calculator {
           this.display.textContent += ` ${this.operand} `;
         }
       });
+      element.addEventListener('keyup', e => {
+        console.log(e.key)
+        this.selectedNum += e.key;
+        this.display.textContent += e.key;
+      })
     });
   }
 }
