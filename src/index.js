@@ -1,3 +1,10 @@
+//Class that holds everything together, maybe it be better to split it
+//Pressing equition button double visible number
+//Maybe Jest implementation? In this state I can't imgaine testing it
+//Maybe more functional aproach? 
+//Multiple dots/operands bug
+
+
 class Calculator {
   constructor() {
     this.numA = '';
@@ -65,9 +72,11 @@ class Calculator {
         }
       });
       element.addEventListener('keyup', e => {
-        console.log(e.key)
-        this.selectedNum += e.key;
-        this.display.textContent += e.key;
+        const keyArr = '1234567890.+-*/'.split('')
+        if(keyArr.includes(e.key)){
+          this.selectedNum += e.key;
+          this.display.textContent += e.key;
+        }
       })
     });
   }
