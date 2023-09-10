@@ -1,1 +1,32 @@
-(()=>{function e(t){return e="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e(t)}function t(t,n){for(var i=0;i<n.length;i++){var r=n[i];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,(void 0,u=function(t,n){if("object"!==e(t)||null===t)return t;var i=t[Symbol.toPrimitive];if(void 0!==i){var r=i.call(t,"string");if("object"!==e(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return String(t)}(r.key),"symbol"===e(u)?u:String(u)),r)}var u}new(function(){function e(){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e),this.numA="",this.numB="",this.operand="+",this.selectedNum=this.numA,this.add=function(e,t){return e+t},this.sub=function(e,t){return e-t},this.multi=function(e,t){return e*t},this.div=function(e,t){return e/t},this.digits=document.querySelectorAll("button"),this.display=document.querySelector(".first-row-dis"),this.init()}var n,i;return n=e,(i=[{key:"operate",value:function(e,t,n){return"+"===n?this.add(Number(e),Number(t)):"-"===n?this.sub(Number(e),Number(t)):"*"===n?this.multi(Number(e),Number(t)):"/"===n?this.div(Number(e),Number(t)):void 0}},{key:"init",value:function(){var e=this;this.digits.forEach((function(t){t.addEventListener("click",(function(n){if(t.id)if("clear-btn"===t.id)e.numB="",e.numA="",e.display.textContent="",e.selectedNum="";else if("score-btn"===t.id){e.numB=e.selectedNum;var i=e.operate(e.numA,e.numB,e.operand),r=parseFloat(i.toFixed(10)).toString();e.display.textContent=r,e.numA=r,e.selectedNum=e.numA}else"back-btn"===t.id?(e.selectedNum=e.selectedNum.split("").splice(0,e.selectedNum.length-1).join(""),e.selectedNum||(e.selectedNum=0),e.display.textContent=e.selectedNum):"dot-btn"===t.id?(e.selectedNum+=t.innerText,e.display.textContent+=t.innerText):t.id&&(e.operand=t.innerText,e.numA=e.selectedNum,e.selectedNum="",e.display.textContent+=" ".concat(e.operand," "));else e.selectedNum+=t.innerText,e.display.textContent+=t.innerText})),t.addEventListener("keyup",(function(t){"1234567890.+-*/".split("").includes(t.key)&&(e.selectedNum+=t.key,e.display.textContent+=t.key)}))}))}}])&&t(n.prototype,i),Object.defineProperty(n,"prototype",{writable:!1}),e}())})();
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ (() => {
+
+eval("// Class that holds everything together, maybe it be better to split it\n// Pressing equition button double visible number\n// Maybe Jest implementation? In this state I can't imgaine testing it\n// Maybe more functional aproach?\n// Multiple dots/operands bug\n\n// mulitple = strange behavior\n// can start with 0,mean 01235 * 442\n// backspace can erase even 0 SOLVED\n// multiple dots can be added 43.....5 SOLVED\n// multiple operands\n// backspace eraser everything\n// add handling multiple operators\n\nvar numA = '';\nvar numB = '';\nvar operand = '+';\nvar selectedNum = numA;\nvar add = function add(a, b) {\n  return a + b;\n};\nvar sub = function sub(a, b) {\n  return a - b;\n};\nvar multi = function multi(a, b) {\n  return a * b;\n};\nvar div = function div(a, b) {\n  return a / b;\n};\nvar digits = document.querySelector('.digits');\nvar display = document.querySelector('.first-row-dis');\nvar operate = function operate() {\n  if (operand === '+') {\n    return add(Number(numA), Number(numB));\n  }\n  if (operand === '-') {\n    return sub(Number(numA), Number(numB));\n  }\n  if (operand === '*') {\n    return multi(Number(numA), Number(numB));\n  }\n  if (operand === '/') {\n    return div(Number(numA), Number(numB));\n  }\n  return null;\n};\nvar clear = function clear() {\n  numB = '';\n  numA = '';\n  display.textContent = '';\n  selectedNum = '';\n};\nvar getResult = function getResult() {\n  numB = selectedNum;\n  var result = operate(numA, numB, operand);\n  var formattedResult = parseFloat(result.toFixed(10));\n  var resultText = formattedResult.toString();\n  display.textContent = resultText;\n  numA = resultText;\n  selectedNum = numA;\n};\nvar back = function back() {\n  if (selectedNum) {\n    selectedNum = selectedNum.split('').splice(0, selectedNum.length - 1).join('');\n    if (!selectedNum) {\n      selectedNum = 0;\n    }\n  }\n  display.textContent = selectedNum;\n};\nvar enterNum = function enterNum(element) {\n  if (!selectedNum.includes('.')) {\n    selectedNum += element.innerText;\n    display.textContent += element.innerText;\n  }\n};\nfunction init() {\n  digits.addEventListener('click', function (e) {\n    var element = e.target;\n    if (!element.id) {\n      // entering numbers\n      enterNum(element);\n    } else if (element.id === 'clear-btn') {\n      // clearing all\n      clear();\n    } else if (element.id === 'score-btn') {\n      // result\n      getResult();\n    } else if (element.id === 'back-btn') {\n      // erasing\n      back();\n    } else if (element.id) {\n      // operands\n      operand = element.innerText;\n      numA = selectedNum;\n      selectedNum = '';\n      display.textContent += \" \".concat(operand, \" \");\n    }\n  });\n  digits.addEventListener('keyup', function (e) {\n    // entering numbers from keyboard\n    var keyArr = '1234567890.+-*/'.split('');\n    if (keyArr.includes(e.key)) {\n      selectedNum += e.key;\n      display.textContent += e.key;\n    }\n  });\n}\ninit();\n\n//# sourceURL=webpack://calculator/./src/index.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./src/index.js"]();
+/******/ 	
+/******/ })()
+;

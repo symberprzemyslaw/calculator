@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "webpack serve"
+    "start": "webpack serve",
+    "lint" : "./node_modules/.bin/eslint"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "@babel/preset-env": "^7.22.15",
     "babel-loader": "^9.1.3",
     "eslint": "^8.49.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-webpack-plugin": "^4.0.1",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
